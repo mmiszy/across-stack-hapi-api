@@ -12,6 +12,7 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "resolveJsonModule": true,
+    "baseUrl": ".",
     "paths": {
       "hapi": ["node_modules/typesafe-hapi"],
       "joi": ["node_modules/typesafe-joi"]
