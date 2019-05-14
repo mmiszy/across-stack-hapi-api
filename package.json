@@ -1,0 +1,28 @@
+{
+  "name": "hapi-api",
+  "version": "1.0.0",
+  "description": "* `npm install` * `npm run dev`",
+  "main": "index.js",
+  "dependencies": {
+    "ts-node": "8.1.0",
+    "ts-node-dev": "1.0.0-pre.39",
+    "typescript": "3.4.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "tsc --noEmit",
+    "start": "ts-node src/index.ts",
+    "dev": "ts-node-dev src/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mmiszy/across-stack-hapi-api.git"
+  },
+  "keywords": [],
+  "author": "Michał Miszczyszyn <michal@mmiszy.pl> (https://typeofweb.com/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mmiszy/across-stack-hapi-api/issues"
+  },
+  "homepage": "https://github.com/mmiszy/across-stack-hapi-api#readme"
+}
