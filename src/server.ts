@@ -1,7 +1,8 @@
 import Hapi from "hapi";
 import { getConfig } from "./config";
+import { ContactRoutePlugin } from "./modules/contact/ContactRoute";
 
-export function getServer() {
+export async function getServer() {
   const port = getConfig("PORT") || 3001;
 
   const server = new Hapi.Server({
@@ -11,7 +12,11 @@ export function getServer() {
     }
   });
 
-  await server.register()
+  await server.register(ContactRoutePlugin, {
+    routes: {
+      prefix: '/api'
+    }
+  })
   
   return server;
 }

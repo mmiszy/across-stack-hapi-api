@@ -9,6 +9,7 @@ import { getServer } from "./server";
     await appServer.start();
     console.info("Server running at:", appServer.info.uri);
   } catch (err) {
+    console.error(err);
     // handle exceptions, Sentry, etc
     process.exit(1);
   }
