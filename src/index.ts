@@ -1,12 +1,15 @@
 import { getServer } from "./server";
 
 (async () => {
-  const appServer = await getServer();
+  try {
+    const appServer = await getServer();
 
-  // await initDb() // @todo
+    // await initDb() // @todo
 
-  await appServer
-    .start()
-    .then(() => console.log(`Working!`))
-    .catch(console.error);
+    await appServer.start();
+    console.info("Server running at:", appServer.info.uri);
+  } catch (err) {
+    // handle exceptions, Sentry, etc
+    process.exit(1);
+  }
 })();
