@@ -12,7 +12,7 @@ export const ItemRoutePlugin: ServerRegisterPluginObject<never> = {
         path: "/items",
         options: {
           response: {
-            schema: Joi.array().items(ItemSchema).required()
+            schema: Joi.array().items(ItemSchema.optional()).required()
           }
         },
         async handler() {
