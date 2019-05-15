@@ -13,14 +13,43 @@ export const ItemSchema = ItemDataSchema.keys({
 export type ItemData = Joi.SchemaValue<typeof ItemDataSchema>;
 export type Item = Joi.SchemaValue<typeof ItemSchema>;
 
+let lastId = 0;
+let items: Item[] = [];
+
 export async function getAllItems(): Promise<Item[]> {
-  return [];
+  return items;
 }
 
-export async function getItemById(id: Item['id']): Promise<Item> {}
+export async function getItemById(id: Item['id']): Promise<Item | undefined> {
+  return items.find(i => i.id === id);
+}
 
-export async function createItem(itemData: ItemData): Promise<Item> {}
+export async function createItem(itemData: ItemData): Promise<Item> {
+  const id = ++lastId;
 
-export async function updateItem(id: Item['id'], itemData: ItemData): Promise<Item> {}
+  const newItem = {
+    id,
+    createdOn: new Date(),
+    ...itemData,
+  };
 
-export async function deleteItem(id: Item['id']): Promise<void> {}
+  items = [...items, newItem];
+  return newItem;
+}
+
+export async function updateItem(id: Item['id'], itemData: ItemData): Promise<void> {
+  items = items.map(i => {
+    if (i.id === id) {
+      return {
+        ...i,
+        ...itemData,
+      };
+    } else {
+      return i;
+    }
+  });
+}
+
+export async function deleteItem(id: Item['id']): Promise<void> {
+  items = items.filter(i => i.id !== id);
+}

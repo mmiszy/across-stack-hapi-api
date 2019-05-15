@@ -25,7 +25,7 @@ export async function getServer() {
 
   await server.register(ItemRoutePlugin, {
     routes: {
-      prefix: "/api"
+      prefix: "/api/items"
     }
   });
 

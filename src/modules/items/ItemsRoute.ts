@@ -1,6 +1,8 @@
 import Joi from "joi";
 import { ServerRegisterPluginObject } from "hapi";
-import { ItemSchema } from "src/models/Item";
+import { ItemSchema, getAllItems,
+  // getItemById, createItem, updateItem, deleteItem
+} from "src/models/Item";
 
 export const ItemRoutePlugin: ServerRegisterPluginObject<never> = {
   plugin: {
@@ -9,14 +11,14 @@ export const ItemRoutePlugin: ServerRegisterPluginObject<never> = {
 
       await server.route({
         method: "GET",
-        path: "/items",
+        path: "/",
         options: {
           response: {
             schema: Joi.array().items(ItemSchema.optional()).required()
           }
         },
         async handler() {
-          return [];
+          return getAllItems();
         }
       });
     }
