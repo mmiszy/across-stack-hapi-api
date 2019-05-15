@@ -10,6 +10,8 @@ export function getServer() {
       cors: true
     }
   });
+
+  await server.register()
   
   return server;
 }
