@@ -8,15 +8,17 @@
     "@hapi/joi": "15.0.3",
     "ts-node": "8.1.0",
     "ts-node-dev": "1.0.0-pre.39",
-    "typesafe-hapi": "2.0.1",
+    "typesafe-hapi": "2.0.2",
     "typesafe-joi": "2.0.1",
     "typescript": "3.4.5"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "tsconfig-paths": "3.8.0"
+  },
   "scripts": {
     "test": "tsc --noEmit",
     "start": "ts-node src/index.ts",
-    "dev": "ts-node-dev src/index.ts"
+    "dev": "ts-node-dev -r tsconfig-paths/register src/index.ts"
   },
   "repository": {
     "type": "git",
