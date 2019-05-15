@@ -1,6 +1,6 @@
 import Joi from "joi";
 
-const ItemSchema = Joi.object({
+export const ItemSchema = Joi.object({
   id: Joi.number().required(),
   title: Joi.string().required(),
   content: Joi.string().required(),
