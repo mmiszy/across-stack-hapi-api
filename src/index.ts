@@ -1,13 +1,12 @@
-import Hapi from 'hapi';
+import { getServer } from "./server";
 
-const port = process.env.PORT || 3001
+(async () => {
+  const appServer = await getServer();
 
-const server = new Hapi.Server({
-  port,
-  routes: {
-    cors: true
-  }
-});
+  // await initDb() // @todo
 
-
-server.start().then(() => console.log(`http://localhost:${port}`)).catch(console.error);
+  await appServer
+    .start()
+    .then(() => console.log(`Working!`))
+    .catch(console.error);
+})();
