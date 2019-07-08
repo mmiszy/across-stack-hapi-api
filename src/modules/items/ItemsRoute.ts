@@ -1,6 +1,6 @@
 import Joi from 'joi';
 import Boom from '@hapi/boom';
-import { ServerRegisterPluginObject } from 'hapi';
+import { Plugin } from 'hapi';
 import {
   ItemSchema,
   getAllItems,
@@ -11,14 +11,14 @@ import {
   ItemDataSchema,
 } from 'src/models/Item';
 
-export const ItemRoutePlugin: ServerRegisterPluginObject<never> = {
-  plugin: {
+export const ItemRoutePlugin: Plugin<never> = {
     name: 'Item Routes',
     async register(server) {
       await server.route({
         method: 'GET',
         path: '/',
         options: {
+          tags: ['api'],
           response: {
             schema: Joi.array()
               .items(ItemSchema.optional())
@@ -34,6 +34,7 @@ export const ItemRoutePlugin: ServerRegisterPluginObject<never> = {
         method: 'GET',
         path: '/{id}',
         options: {
+          tags: ['api'],
           response: {
             schema: ItemSchema.required(),
           },
@@ -59,6 +60,7 @@ export const ItemRoutePlugin: ServerRegisterPluginObject<never> = {
         method: 'POST',
         path: '/',
         options: {
+          tags: ['api'],
           response: {
             schema: ItemSchema.required(),
           },
@@ -76,6 +78,7 @@ export const ItemRoutePlugin: ServerRegisterPluginObject<never> = {
         method: 'PUT',
         path: '/{id}',
         options: {
+          tags: ['api'],
           response: {
             schema: null,
           },
@@ -97,6 +100,7 @@ export const ItemRoutePlugin: ServerRegisterPluginObject<never> = {
         method: 'DELETE',
         path: '/{id}',
         options: {
+          tags: ['api'],
           response: {
             schema: null,
           },
@@ -113,5 +117,4 @@ export const ItemRoutePlugin: ServerRegisterPluginObject<never> = {
         },
       });
     },
-  },
 };

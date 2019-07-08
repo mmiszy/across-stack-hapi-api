@@ -3,12 +3,12 @@ import Joi from 'joi';
 export const ItemDataSchema = Joi.object({
   title: Joi.string().required(),
   content: Joi.string().required(),
-}).required();
+}).label('ItemData').required();
 
 export const ItemSchema = ItemDataSchema.keys({
   id: Joi.number().required(),
   createdOn: Joi.date().required(),
-}).required();
+}).label('Item').required();
 
 export type ItemData = Joi.SchemaValue<typeof ItemDataSchema>;
 export type Item = Joi.SchemaValue<typeof ItemSchema>;

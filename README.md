@@ -3,3 +3,5 @@
 
 * `npm install`
 * `npm run dev`
+
+Documentation is available at http://localhost:3001/documentation

@@ -1,14 +1,14 @@
 import Joi from "joi";
-import { ServerRegisterPluginObject } from "hapi";
+import { Plugin } from "hapi";
 
-export const ContactRoutePlugin: ServerRegisterPluginObject<never> = {
-  plugin: {
+export const ContactRoutePlugin: Plugin<never> = {
     name: "Contact Routes",
     async register(server) {
       await server.route({
         method: "GET",
         path: "/contact",
         options: {
+          tags: ['api'],
           response: {
             schema: Joi.object({
               author: Joi.string().required(),
@@ -19,7 +19,7 @@ export const ContactRoutePlugin: ServerRegisterPluginObject<never> = {
                 .uri()
                 .required(),
               twitterName: Joi.string().required()
-            })
+            }).label('Contact')
           }
         },
         async handler() {
@@ -32,5 +32,4 @@ export const ContactRoutePlugin: ServerRegisterPluginObject<never> = {
         }
       });
     }
-  }
 };

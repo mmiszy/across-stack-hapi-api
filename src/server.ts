@@ -1,4 +1,8 @@
 import Hapi from 'hapi';
+import Inert from '@hapi/inert';
+import Vision from '@hapi/vision';
+import HapiSwagger from 'hapi-swagger';
+
 import { getConfig } from './config';
 import { ContactRoutePlugin } from './modules/contact/ContactRoute';
 import { ItemRoutePlugin } from './modules/items/ItemsRoute';
@@ -35,8 +39,23 @@ export async function getServer() {
     console.error(event.error);
   });
 
-  await server.register(ContactRoutePlugin);
-  await server.register(ItemRoutePlugin, {
+  const swaggerOptions: HapiSwagger.RegisterOptions = {
+    info: {
+      title: 'Across Stack Hapi API Documentation',
+    },
+    reuseDefinitions: false,
+  };
+
+  await server.register([
+    { plugin: Inert },
+    { plugin: Vision },
+    {
+      plugin: HapiSwagger, options: swaggerOptions
+    }
+  ] as any);
+
+  await server.register({ plugin: ContactRoutePlugin });
+  await server.register({ plugin: ItemRoutePlugin }, {
     routes: {
       prefix: '/items',
     },
