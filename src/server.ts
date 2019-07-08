@@ -36,7 +36,6 @@ export async function getServer() {
   });
 
   await server.register(ContactRoutePlugin);
-
   await server.register(ItemRoutePlugin, {
     routes: {
       prefix: '/items',
